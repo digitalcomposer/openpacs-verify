@@ -24,6 +24,7 @@
 
 - Python 3.11+ and standard library by default.
 - Add tests for every policy decision and every denied safety case.
-- Run `python3 -m unittest discover -s tests -v` before committing.
+- Run `PYTHONPATH=src python3 -m unittest discover -s tests -v` before committing
+  when the package is not installed in the active environment.
 - Security-relevant changes require an updated threat model or an explicit note
   explaining why the model is unaffected.

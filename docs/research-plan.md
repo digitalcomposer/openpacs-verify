@@ -36,6 +36,19 @@ actions.
 
 Exit: no state-changing action type can be enabled through configuration.
 
+### Phase 0.5 — Decision-only authorization binding
+
+- canonical, bounded action representation;
+- authorization bound to action and complete policy digests;
+- short-lived, HMAC-protected, single-use grants;
+- rejection of mutation, replay, forgery, duplicate keys and nested sensitive
+  parameters;
+- architecture tests preventing network and subprocess authority in the
+  decision-only package.
+
+Exit: all binding and adversarial unit tests pass. This phase does not claim
+process isolation and introduces no execution adapter.
+
 ### Phase 1 — Synthetic PACS digital twin
 
 - fictional management service, controller, reader, alarm input and lock state;

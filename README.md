@@ -47,17 +47,22 @@ the project scope, terminology, AI safety model and legal limitations.
 
 ## Current status
 
-**Phase 0: governance and safety kernel.** The repository currently provides:
+**Phase 0.5: decision-only broker semantics.** The repository currently provides:
 
 - a deny-by-default action authorization kernel;
+- canonical action envelopes and short-lived, policy-bound, single-use grants;
+- mutation, expiry, forgery, replay and duplicate-key rejection tests;
 - an executable CLI and unit tests;
 - the initial security architecture and STRIDE threat model;
 - a clean-room and coordinated-disclosure policy;
 - an EU legal and standards applicability register;
 - an evidence-source ledger and research roadmap.
 
-It does **not** yet provide a controller emulator, scanner, exploit modules, or
-production integration.
+It does **not** yet provide process isolation, an OS sandbox, an execution
+adapter, an AI model integration, a controller emulator, scanner, exploit
+modules, or production integration. The implemented broker module defines and
+tests authorization semantics only; it must not be described as an isolation
+boundary.
 
 ## Safety kernel quick start
 
@@ -71,8 +76,10 @@ PYTHONPATH=src python3 -m openpacs_verify.cli \
 ```
 
 The default policy permits passive observations against `127.0.0.1` only. It
-denies hostnames, external addresses, credential-bearing parameters and every
-state-changing or actuator action.
+denies hostnames, external addresses, nested credential-bearing parameters and
+every state-changing or actuator action. The decision-only broker additionally
+binds an authorization grant to the canonical action and complete policy,
+expires it, and accepts it once. It performs no network or process execution.
 
 ## Design principles
 

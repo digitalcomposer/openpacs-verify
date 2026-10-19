@@ -7,9 +7,11 @@
 OpenPACS Verify is a pre-alpha defensive research project. It is not a
 production vulnerability scanner, access-control product or legal compliance
 tool. It contains no vendor firmware, proprietary protocol implementation,
-customer data or real credentials. The public architecture has no
-AI-to-actuator path, and the deterministic policy kernel rejects state-changing
-actions.
+customer data or real credentials. The current Phase 0.5 implementation has no
+AI-to-actuator path. Its deterministic policy kernel rejects state-changing
+actions, while its decision-only broker tests canonical, expiring and
+single-use authorization binding. Process isolation, AI analysis and execution
+adapters are not implemented.
 
 ## Start here
 

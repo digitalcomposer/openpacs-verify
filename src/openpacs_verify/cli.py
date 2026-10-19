@@ -11,9 +11,18 @@ from .models import Action
 from .policy import Policy, PolicyError
 
 
+def _object_without_duplicates(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+    document: dict[str, Any] = {}
+    for key, value in pairs:
+        if key in document:
+            raise ValueError(f"duplicate object key: {key}")
+        document[key] = value
+    return document
+
+
 def _parse_action(raw: str) -> Action:
     try:
-        value: Any = json.loads(raw)
+        value: Any = json.loads(raw, object_pairs_hook=_object_without_duplicates)
         if not isinstance(value, dict):
             raise ValueError("action root must be an object")
         parameters = value.get("parameters", {})
@@ -39,7 +48,15 @@ def main() -> int:
         policy = Policy.load(args.policy)
         decision = policy.authorize(_parse_action(args.action))
     except (PolicyError, ValueError) as exc:
-        print(json.dumps({"allowed": False, "reason_code": "INVALID_INPUT", "explanation": str(exc)}))
+        print(
+            json.dumps(
+                {
+                    "allowed": False,
+                    "reason_code": "INVALID_INPUT",
+                    "explanation": str(exc),
+                }
+            )
+        )
         return 2
 
     print(

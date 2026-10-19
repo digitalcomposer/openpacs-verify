@@ -2,7 +2,7 @@ cff-version: 1.2.0
 message: "If you use OpenPACS Verify in research, please cite the software using this metadata."
 title: "OpenPACS Verify: Safety-Constrained AI Assurance for Physical Access Control Systems"
 type: software
-version: 0.1.0
+version: 0.2.0
 date-released: 2026-10-19
 authors:
   - name: "digitalcomposer"

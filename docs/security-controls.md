@@ -16,6 +16,9 @@ Framework mappings express design intent, not certification.
 | SC-10 Supply-chain security | TM-08 | Standard-library core; read-only CI permission | Dependency and workflow review | Partial |
 | SC-11 Sensitive input rejection | TM-06 | Denied parameter names; synthetic data policy | Unit tests | Partial |
 | SC-12 Coordinated disclosure | Downstream harm | `SECURITY.md` intake and publication gates | Tabletop exercise | Process |
+| SC-13 Canonical authorization binding | TM-13, TM-14 | Action and policy digests; HMAC; expiry; single-use nonce | Mutation, forgery, expiry and replay tests | Implemented, decision-only |
+| SC-14 Non-bypassable execution broker | TM-02, TM-10, TM-15 | Separate least-privilege process and OS sandbox | Direct-access and compromise tests | Planned |
+| SC-15 Adversarial AI evidence handling | TM-01, TM-05, TM-07 | Strict evidence gateway and labelled injection corpus | At least 50 versioned scenarios | Planned |
 
 ## Framework coverage
 

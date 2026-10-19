@@ -51,6 +51,18 @@ class PolicyTests(unittest.TestCase):
         self.assertFalse(decision.allowed)
         self.assertEqual(decision.reason_code, "SENSITIVE_PARAMETER_DENIED")
 
+    def test_denies_nested_sensitive_parameter_names(self) -> None:
+        decision = policy().authorize(
+            Action(
+                "validate",
+                "127.0.0.1",
+                "validate_configuration",
+                {"metadata": {"token": "synthetic"}},
+            )
+        )
+        self.assertFalse(decision.allowed)
+        self.assertEqual(decision.reason_code, "SENSITIVE_PARAMETER_DENIED")
+
     def test_rejects_policy_that_allow_lists_state_change(self) -> None:
         with self.assertRaises(PolicyError):
             policy(allowed_kinds=["observe", "actuate"])

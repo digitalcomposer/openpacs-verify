@@ -12,6 +12,10 @@ read-only adapters. It is for maintainers and security reviewers.
 
 - The implemented policy kernel accepts declarative actions and performs no
   network or process execution.
+- The decision-only broker binds an authorization grant to canonical action and
+  policy digests and rejects expiry, mutation, forgery and replay.
+- The broker is currently an in-process reference implementation, not process
+  isolation or an OS sandbox.
 - The default policy permits only loopback observations and validation.
 - The public repository prohibits real PACS and confidential data.
 
@@ -43,6 +47,9 @@ read-only adapters. It is for maintainers and security reviewers.
 | TM-10 | Lab network is bridged to production | S/E | Loopback default, no external route, preflight checks | Host misconfiguration |
 | TM-11 | A denial is interpreted as proof of safety | R | Explicit scope and evidence status | User overconfidence |
 | TM-12 | Framework mapping is represented as certification | R | Disclaimer, traceable controls, review dates | Downstream marketing misuse |
+| TM-13 | Action fields are mutated after authorization | T/E | Canonical digest binding and adapter-side verification contract | Future adapter not yet implemented |
+| TM-14 | A valid authorization is replayed | S/E | Expiring single-use nonce and bounded replay cache | Multi-process persistence not yet implemented |
+| TM-15 | In-process caller bypasses broker semantics | E | Planned separate broker process and OS sandbox | Current Phase 0.5 is not isolated |
 
 ## Highest-priority risks
 
@@ -54,7 +61,10 @@ read-only adapters. It is for maintainers and security reviewers.
 
 ## Mitigation roadmap
 
-- Add architecture tests that detect network/process calls outside adapters.
+- Keep architecture tests that reject network/process authority in the
+  decision-only package.
+- Move grant issuance and consumption into a separate least-privilege broker
+  process with bounded local protocol messages.
 - Add an operating-system sandbox and no-default-route preflight.
 - Define signed authorization manifests with expiry and purpose.
 - Add evidence object hashes and structured finding schemas.
@@ -63,9 +73,11 @@ read-only adapters. It is for maintainers and security reviewers.
 
 ## Residual risk decision
 
-Phase 0 is acceptable for local policy evaluation only. Network collection,
-model-provider integration and any external pilot remain **not approved** until
-their controls and tests are implemented and reviewed.
+Phase 0.5 is acceptable for local policy and authorization-binding evaluation
+only. Its grants do not prove runtime isolation. Network collection,
+model-provider integration, adapters and any external pilot remain **not
+approved** until the separate broker, sandbox, controls and adversarial tests
+are implemented and reviewed.
 
 ## Review triggers
 

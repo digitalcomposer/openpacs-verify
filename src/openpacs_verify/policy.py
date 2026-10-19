@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import ipaddress
 import json
 from dataclasses import dataclass
@@ -19,6 +20,46 @@ _STATE_CHANGING_KINDS = frozenset({"state_change", "actuate", "write", "exploit"
 _SENSITIVE_PARAMETER_NAMES = frozenset(
     {"password", "passwd", "secret", "token", "api_key", "private_key", "pin"}
 )
+
+
+def _parameter_names(
+    value: Any, *, depth: int = 0, seen: set[int] | None = None
+) -> set[str]:
+    """Collect nested parameter names, rejecting cyclic or excessively deep input."""
+
+    if depth > 16:
+        raise ValueError("parameters exceed maximum nesting depth")
+    if seen is None:
+        seen = set()
+
+    if isinstance(value, Mapping):
+        identity = id(value)
+        if identity in seen:
+            raise ValueError("parameters must not contain cycles")
+        seen.add(identity)
+        names: set[str] = set()
+        try:
+            for name, nested in value.items():
+                names.add(str(name).strip().lower())
+                names.update(_parameter_names(nested, depth=depth + 1, seen=seen))
+        finally:
+            seen.remove(identity)
+        return names
+
+    if isinstance(value, (list, tuple)):
+        identity = id(value)
+        if identity in seen:
+            raise ValueError("parameters must not contain cycles")
+        seen.add(identity)
+        try:
+            names: set[str] = set()
+            for nested in value:
+                names.update(_parameter_names(nested, depth=depth + 1, seen=seen))
+            return names
+        finally:
+            seen.remove(identity)
+
+    return set()
 
 
 @dataclass(frozen=True, slots=True)
@@ -97,7 +138,10 @@ class Policy:
         if not any(target in network for network in self.allowed_networks):
             return Decision(False, "TARGET_OUT_OF_SCOPE", "target is outside laboratory scope")
 
-        parameter_names = {str(name).strip().lower() for name in action.parameters}
+        try:
+            parameter_names = _parameter_names(action.parameters)
+        except ValueError as exc:
+            return Decision(False, "INVALID_PARAMETERS", str(exc))
         if parameter_names & _SENSITIVE_PARAMETER_NAMES:
             return Decision(
                 False,
@@ -106,3 +150,16 @@ class Policy:
             )
 
         return Decision(True, "ALLOW", "action satisfies the laboratory policy")
+
+    def digest(self) -> str:
+        """Return a stable digest that binds grants to the complete policy."""
+
+        document = {
+            "allowed_kinds": sorted(self.allowed_kinds),
+            "allowed_networks": sorted(str(network) for network in self.allowed_networks),
+            "allowed_operations": sorted(self.allowed_operations),
+            "deny_state_change": self.deny_state_change,
+            "policy_id": self.policy_id,
+        }
+        encoded = json.dumps(document, sort_keys=True, separators=(",", ":")).encode()
+        return hashlib.sha256(encoded).hexdigest()

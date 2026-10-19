@@ -2,8 +2,9 @@
 
 ## Status
 
-Initial target architecture. Components beyond the policy kernel are planned,
-not implemented.
+Phase 0.5 architecture. The policy kernel, canonical action envelope and
+decision-only grant broker are implemented. Process isolation, the OS sandbox,
+tool adapters, evidence pipeline, AI planner and digital twin remain planned.
 
 ## System context
 
@@ -14,7 +15,11 @@ Synthetic evidence --> Evidence normalizer --> AI analysis planner
   Evidence store <------------------------ Finding proposals
                                                    |
                                                    v
-Human reviewer --> Signed lab authorization --> Policy decision point
+Human reviewer --> Signed lab authorization --> Isolated execution broker
+                                                   |
+                                      canonical action + policy binding
+                                                   v
+                                        Policy decision point
                                                    |
                                    allow passive operation only
                                                    v
@@ -26,7 +31,10 @@ Human reviewer --> Signed lab authorization --> Policy decision point
 
 There is intentionally no path from the AI planner to an actuator. A future
 digital twin may simulate physical state internally, but the public tool adapter
-will not expose an actuator operation.
+will not expose an actuator operation. The currently implemented
+`DecisionBroker` issues and consumes HMAC-protected grants in memory only. It
+does not yet run as a separate process and therefore is not an isolation
+boundary.
 
 ## Assets
 
@@ -63,6 +71,9 @@ will not expose an actuator operation.
 - Targets are explicit IP literals and must belong to the current authorization.
 - The public default policy permits loopback only.
 - State-changing actions cannot be enabled by editing policy data.
+- Authorization is bound to canonical action and policy digests, expires and is
+  single-use.
+- Mutation, forgery, replay and ambiguous duplicate JSON keys fail closed.
 - Missing policy, invalid evidence, ambiguity and timeout fail closed.
 - Logs exclude secrets, PINs, badge identifiers and raw personal data.
 - Findings must identify evidence and uncertainty.
@@ -89,7 +100,8 @@ will not expose an actuator operation.
 ## Open architecture questions
 
 - Which local model and hosted-model interfaces should be supported first?
-- Which sandbox gives the clearest cross-platform network isolation guarantee?
+- Which operating system should receive the first independently verified
+  sandbox backend? Cross-platform equivalence must not be assumed.
 - What evidence format best supports independent verification and redaction?
 - Which PACS behaviours can be represented without resembling a proprietary
   protocol or creating a reusable offensive capability?

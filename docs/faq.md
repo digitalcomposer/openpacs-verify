@@ -15,9 +15,10 @@ oversight alongside confidentiality and integrity.
 
 ## Is this an OT vulnerability scanner?
 
-No. The current Phase 0 release is a governance package and deny-by-default
-safety kernel. It does not scan networks, discover Internet assets, execute
-exploits or connect to production OT.
+No. The current Phase 0.5 release provides governance, a deny-by-default safety
+kernel and decision-only authorization-binding semantics. It does not provide
+process isolation, scan networks, discover Internet assets, execute exploits or
+connect to production OT.
 
 ## Can OpenPACS Verify open doors or control locks?
 
@@ -29,8 +30,10 @@ types even if a policy file attempts to allow them.
 
 The planned AI component receives synthetic or explicitly authorized evidence
 and may propose structured findings or passive laboratory actions. Model output
-is untrusted data. A deterministic policy decision point validates the action,
-target, operation and parameters before any read-only adapter can run.
+is untrusted data. The implemented decision-only broker can bind a canonical
+proposal to the complete policy with a short-lived, single-use grant. A future
+separate broker process and adapter must independently verify that binding. No
+AI component, execution adapter or OS isolation is implemented yet.
 
 ## What AI security risks are in scope?
 

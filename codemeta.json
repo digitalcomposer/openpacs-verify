@@ -3,7 +3,7 @@
   "@type": "SoftwareSourceCode",
   "name": "OpenPACS Verify",
   "description": "Safety-constrained, vendor-neutral AI assurance research for physical access control systems, operational technology and cyber-physical systems.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "dateCreated": "2026-10-19",
   "dateModified": "2026-10-19",
   "developmentStatus": "Concept",
