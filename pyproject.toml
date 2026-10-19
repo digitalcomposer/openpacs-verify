@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "openpacs-verify"
+version = "0.1.0"
+description = "Safety-constrained assurance tooling for vendor-neutral PACS research"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "Apache-2.0" }
+authors = [{ name = "OpenPACS Verify contributors" }]
+classifiers = [
+  "Development Status :: 2 - Pre-Alpha",
+  "License :: OSI Approved :: Apache Software License",
+  "Programming Language :: Python :: 3",
+  "Topic :: Security",
+]
+
+[project.scripts]
+openpacs-verify = "openpacs_verify.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
