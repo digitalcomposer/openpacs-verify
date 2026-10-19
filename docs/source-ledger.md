@@ -42,6 +42,14 @@ summaries and links, not copied content. Last checked 2026-10-19.
 | SRC-AI-01 | [Anthropic Cyber Verification Program](https://www.anthropic.com/news/cyber-verification-program) | Public description of defensive access tiers and verification expectations; not a project endorsement. |
 | SRC-AI-02 | [Anthropic Cyber Mission](https://www.anthropic.com/news/anthropic-cyber-mission) | Public critical-infrastructure and open-source defence priorities; not a project endorsement. |
 
+## Repository discovery and research metadata
+
+| ID | Source | Use in this project |
+|---|---|---|
+| SRC-META-01 | [GitHub documentation: repository topics](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/classifying-your-repository-with-topics) | Topic naming, discoverability and 20-topic limit. |
+| SRC-META-02 | [GitHub documentation: CITATION files](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files) | Human- and machine-readable software citation metadata. |
+| SRC-META-03 | [llms.txt proposal](https://llmstxt.org/) | Experimental curated index for AI retrieval. The project does not present it as a ratified standard, crawler permission or ranking guarantee. |
+
 ## Excluded inputs
 
 - non-public or NDA material;

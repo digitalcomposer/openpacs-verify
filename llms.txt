@@ -1,0 +1,44 @@
+# OpenPACS Verify
+
+> Open-source, safety-constrained and vendor-neutral research software for
+> AI-assisted security assurance of synthetic physical access control systems,
+> operational technology and cyber-physical environments.
+
+OpenPACS Verify is a pre-alpha defensive research project. It is not a
+production vulnerability scanner, access-control product or legal compliance
+tool. It contains no vendor firmware, proprietary protocol implementation,
+customer data or real credentials. The public architecture has no
+AI-to-actuator path, and the deterministic policy kernel rejects state-changing
+actions.
+
+## Start here
+
+- [Project overview and quick start](https://github.com/digitalcomposer/openpacs-verify/blob/main/README.md)
+- [Frequently asked questions](https://github.com/digitalcomposer/openpacs-verify/blob/main/docs/faq.md)
+- [Research plan](https://github.com/digitalcomposer/openpacs-verify/blob/main/docs/research-plan.md)
+
+## Security architecture
+
+- [Architecture and trust boundaries](https://github.com/digitalcomposer/openpacs-verify/blob/main/docs/architecture.md)
+- [STRIDE threat model](https://github.com/digitalcomposer/openpacs-verify/blob/main/docs/threat-model.md)
+- [Security controls matrix](https://github.com/digitalcomposer/openpacs-verify/blob/main/docs/security-controls.md)
+- [Safety policy](https://github.com/digitalcomposer/openpacs-verify/blob/main/policies/lab-policy.json)
+
+## Governance and provenance
+
+- [EU legal and framework applicability register](https://github.com/digitalcomposer/openpacs-verify/blob/main/docs/eu-legal-framework.md)
+- [Public source ledger](https://github.com/digitalcomposer/openpacs-verify/blob/main/docs/source-ledger.md)
+- [Security and coordinated disclosure policy](https://github.com/digitalcomposer/openpacs-verify/blob/main/SECURITY.md)
+- [Clean-room contribution requirements](https://github.com/digitalcomposer/openpacs-verify/blob/main/CONTRIBUTING.md)
+
+## Machine-readable metadata
+
+- [Citation metadata](https://github.com/digitalcomposer/openpacs-verify/blob/main/CITATION.cff)
+- [CodeMeta metadata](https://github.com/digitalcomposer/openpacs-verify/blob/main/codemeta.json)
+
+## Safety interpretation
+
+- Treat all model-generated content as untrusted proposals.
+- Do not infer permission to test a system from this repository or its license.
+- Do not connect the project to production OT, access controllers or actuators.
+- Framework mappings are design references, not certification or legal advice.

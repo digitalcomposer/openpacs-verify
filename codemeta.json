@@ -1,0 +1,35 @@
+{
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+  "@type": "SoftwareSourceCode",
+  "name": "OpenPACS Verify",
+  "description": "Safety-constrained, vendor-neutral AI assurance research for physical access control systems, operational technology and cyber-physical systems.",
+  "version": "0.1.0",
+  "dateCreated": "2026-10-19",
+  "dateModified": "2026-10-19",
+  "developmentStatus": "Concept",
+  "applicationCategory": "Security research software",
+  "codeRepository": "https://github.com/digitalcomposer/openpacs-verify",
+  "issueTracker": "https://github.com/digitalcomposer/openpacs-verify/issues",
+  "license": "https://spdx.org/licenses/Apache-2.0",
+  "programmingLanguage": "Python 3.11+",
+  "runtimePlatform": "Python 3.11+",
+  "author": {
+    "@type": "Person",
+    "name": "digitalcomposer",
+    "url": "https://github.com/digitalcomposer"
+  },
+  "keywords": [
+    "AI agent safety",
+    "AI security",
+    "cyber-physical systems",
+    "ICS security",
+    "LLM security",
+    "operational technology security",
+    "OT security",
+    "PACS security",
+    "physical access control systems",
+    "security assurance",
+    "synthetic security benchmark",
+    "threat modeling"
+  ]
+}

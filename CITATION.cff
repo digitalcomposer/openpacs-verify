@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: "If you use OpenPACS Verify in research, please cite the software using this metadata."
+title: "OpenPACS Verify: Safety-Constrained AI Assurance for Physical Access Control Systems"
+type: software
+version: 0.1.0
+date-released: 2026-10-19
+authors:
+  - name: "digitalcomposer"
+repository-code: "https://github.com/digitalcomposer/openpacs-verify"
+url: "https://github.com/digitalcomposer/openpacs-verify"
+license: Apache-2.0
+keywords:
+  - AI security
+  - cyber-physical systems
+  - LLM security
+  - operational technology
+  - physical access control systems
+  - security assurance
+  - threat modeling
+abstract: >-
+  Open-source, vendor-neutral research software for evaluating whether
+  safety-constrained AI workflows can produce evidence-based security findings
+  for synthetic physical access control systems without enabling real physical
+  actuation.

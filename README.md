@@ -1,7 +1,15 @@
 # OpenPACS Verify
 
-Safety-constrained, vendor-neutral assurance tooling for AI-assisted security
-research on physical access control systems (PACS).
+[![CI](https://github.com/digitalcomposer/openpacs-verify/actions/workflows/ci.yml/badge.svg)](https://github.com/digitalcomposer/openpacs-verify/actions/workflows/ci.yml)
+
+Open-source, safety-constrained and vendor-neutral assurance tooling for
+AI-assisted security research on physical access control systems (PACS),
+operational technology (OT) and cyber-physical systems.
+
+OpenPACS Verify combines OT security, AI agent safety, LLM security, threat
+modeling and evidence-based verification. It is designed as a reproducible
+research platform for defensive analysis—not as a production scanner or door
+control system.
 
 > [!IMPORTANT]
 > OpenPACS Verify is for synthetic environments and systems you own or are
@@ -25,6 +33,17 @@ real credentials.
 Can a safety-constrained AI workflow identify and explain PACS security
 weaknesses from synthetic evidence while technically preventing commands that
 could change real physical state?
+
+## Who this is for
+
+- OT, ICS and cyber-physical security researchers;
+- physical access control and building-security engineers;
+- AI security, LLM security and agent-safety evaluators;
+- universities and maintainers building synthetic security benchmarks;
+- defenders studying IEC 62443, NIST SP 800-82 or NIST AI RMF workflows.
+
+See the [frequently asked questions](docs/faq.md) for concise explanations of
+the project scope, terminology, AI safety model and legal limitations.
 
 ## Current status
 
@@ -77,8 +96,19 @@ state-changing or actuator action.
 - [Security controls](docs/security-controls.md)
 - [EU legal and framework register](docs/eu-legal-framework.md)
 - [Public source ledger](docs/source-ledger.md)
+- [Frequently asked questions](docs/faq.md)
 - [Security and disclosure policy](SECURITY.md)
 - [Contributing and clean-room rules](CONTRIBUTING.md)
+- [AI-readable project index](llms.txt) — experimental community convention
+
+## Research metadata
+
+- [`CITATION.cff`](CITATION.cff) provides GitHub-readable citation metadata.
+- [`codemeta.json`](codemeta.json) provides machine-readable research-software
+  metadata.
+- [`llms.txt`](llms.txt) is a curated project index for AI retrieval systems.
+  It is an experimental convention and does not grant crawler permission or
+  guarantee inclusion in any AI search engine.
 
 ## Legal position
 
